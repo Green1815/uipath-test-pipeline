@@ -1,0 +1,216 @@
+{
+  "name": "Ciphix_Performer_Framework",
+  "projectId": "2530b2cc-73b2-480e-8276-375dc5c17bf1",
+  "description": "Ciphix Performer Framework",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Credentials.Activities": "[2.0.0]",
+    "UiPath.Excel.Activities": "[2.22.2]",
+    "UiPath.Mail.Activities": "[1.21.1]",
+    "UiPath.System.Activities": "[23.10.2]",
+    "UiPath.Testing.Activities": "[23.10.0]",
+    "UiPath.UIAutomation.Activities": "[23.10.3]",
+    "UiPath.WebAPI.Activities": "[1.18.0]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "19.10.2.0",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": false,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": [
+        "Data/Config.json",
+        "Data/Assets.json",
+        "Framework/OLD_InitAllSettings.xaml"
+      ]
+    },
+    "fileInfoCollection": [
+      {
+        "templateType": "Generic",
+        "fileName": ".templates\\wfGeneralTemplate.xaml"
+      },
+      {
+        "templateType": "Generic",
+        "fileName": ".templates\\wfModernTemplate.xaml"
+      },
+      {
+        "templateType": "Generic",
+        "fileName": ".templates\\wfWindowTemplate.xaml"
+      },
+      {
+        "templateType": "Generic",
+        "fileName": ".templates\\wfBrowserTemplate.xaml"
+      },
+      {
+        "templateType": "TestCase",
+        "fileName": ".templates\\TestCaseTemplate.xaml"
+      },
+      {
+        "templateType": "ExecutionTemplate",
+        "fileName": ".templates\\ET_InitTestCase.xaml"
+      },
+      {
+        "templateType": "ExecutionTemplate",
+        "fileName": ".templates\\ET_AppName_LogOnLogOff.xaml"
+      },
+      {
+        "templateType": "ExecutionTemplate",
+        "fileName": ".templates\\ET_AppName_LogOn.xaml"
+      },
+      {
+        "templateType": "ExecutionTemplate",
+        "fileName": ".templates\\ET_AppName_LogOff.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "7a56d408-e040-4642-966b-2674ca086bca",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_GetAllProcessesInfo.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "6bd91050-d3f3-49b1-9ae6-97da77df37a5",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_GetDataAndDispatch.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "5b08a7ae-7a1e-4559-b4d2-3b29da835608",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_GetInitiationSource.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "491a96ad-8a79-48f7-9696-47100869c8a3",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_GetMachineDiagnostics.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "ba10f3c7-689f-4e24-b76c-ccc376517512",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_InitAllApplications.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "6d9737fa-f252-412d-98eb-c653fca414b4",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\InitStage\\TestCase_InitAllSettings.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "d0eb0e5b-2dcc-4fbd-b2a9-6d6f8bba1784",
+        "dataVariationFilePath": ".variations\\NoExceptionOnly_TestData.json",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\EndStage\\TestCase_CloseAllApplications.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "8ceae262-337a-47d3-99d7-57ee484d6e60",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\EndStage\\TestCase_DirectReporter.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "07bc7be3-0e72-4f0f-97a4-25daa1158c06",
+        "executionTemplatePath": ".templates\\ET_InitTestCase.xaml",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test_Framework\\ProcessingStage\\TestCase_Process.xaml"
+      }
+    ],
+    "saveToCloud": false
+  },
+  "arguments": {
+    "input": [
+      {
+        "name": "DirectReporterOn",
+        "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "required": false,
+        "hasDefault": true
+      },
+      {
+        "name": "IncludeMailScreenshots",
+        "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "required": false,
+        "hasDefault": true
+      },
+      {
+        "name": "OnlyReportErrors",
+        "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "required": false,
+        "hasDefault": true
+      }
+    ],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "a2df3e2b-c1d9-4b1c-afbc-8a3ea465b8a6",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}

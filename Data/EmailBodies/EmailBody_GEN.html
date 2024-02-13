@@ -1,0 +1,325 @@
+<html style="background-color:#f6f6f6;">
+<head>
+<style>html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:middle}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}</style>
+  <style>
+  @media screen and (max-width: 600px) {
+        .wrapper {
+            width: 100% !important;
+        }
+
+        .wrapper .subtable {
+            width: 100% !important;
+            display: block !important;
+        }
+		.wrapper .subtable.desktop {
+		    display: none !important;
+		}
+		.wrapper .subtable.mobile {
+		    display: block !important;
+		}
+    }
+
+</style>
+
+</head>
+	<body style="background-color:#f6f6f6;">
+		<table align="center" width="600" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+			<tr><td colspan="3">&nbsp;</td></tr>
+			<tr>
+				<td width="20">&nbsp;</td>
+			
+				<td>
+				<table class="wrapper" style="background-color:#fff;" height="100" width="560">
+					<tr>	
+						<td width="560" align="center" style="line-height:20px;">&nbsp;</td>
+					</tr>
+					<tr>	
+						<td width="560" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:22px;font-weight:bold;color:#1477FF;">$MailHeader</td>
+					</tr>
+					<tr>
+						<td width="560" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:16px;color:#0F186B;font-weight:bold;">#processName</td>
+					</tr>
+					<tr>	
+						<td width="560" align="center" style="line-height:20px;">&nbsp;</td>
+					</tr>
+					<tr height="2">
+						<td height="2" style="height:2px;background-color:#F2F3F8;line-height:2px;"><div height="2" style="height:2px;line-height:2px;"></div></td>
+					</tr>
+				</table>
+				<table class="wrapper" style="background-color:#fff;" width="560" border="0" cellpadding="0" cellspacing="0">
+					
+					<tr><td colspan="3" height="40">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$Salutations</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$Opening</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr height="1">
+						<td height="1" width="20"></td>
+						<td height="1" style="height:1px;background-color:#F2F3F8;line-height:1px;"><div height="1" style="height:1px;line-height:1px;"></div></td>
+						<td height="1" width="20"></td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;"><span style="color:#performerStatusColor">⬤</span> Performer: #performerStatus</td>
+						<td width="20">&nbsp;</td>
+					</tr>	
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">
+							<table class="subtable">
+								<tr>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;" width="150">$StartTime</td>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">#performerExecutionTime</td>
+								</tr>
+								<tr>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;" width="150">$ExecutionTime</td>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">#performerExecutionDuration</td>
+								</tr>
+							</table>
+						</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+										
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr height="1">
+						<td height="1" width="20"></td>
+						<td height="1" style="height:1px;background-color:#F2F3F8;line-height:1px;"><div height="1" style="height:1px;line-height:1px;"></div></td>
+						<td height="1" width="20"></td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<!---Dispatcher--->
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;"><span style="color:#dispatcherStatusColor">⬤</span> Dispatcher: #dispatcherStatus</td>
+						<td width="20">&nbsp;</td>
+					</tr>	
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">
+							<table class="subtable">
+								<tr>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;" width="150">$StartTime</td>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">#dispatcherExecutionTime</td>
+								</tr>
+								<tr>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;" width="150">$ExecutionTime</td>
+									<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">#dispatcherExecutionDuration</td>
+								</tr>
+							</table>
+						</td>
+						<td width="20">&nbsp;</td>
+					</tr>	
+
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<!---/Dispatcher--->
+					
+					<!---NumQueueItems--->
+					
+					<tr height="1">
+						<td height="1" width="20"></td>
+						<td height="1" style="height:1px;background-color:#F2F3F8;line-height:1px;"><div height="1" style="height:1px;line-height:1px;"></div></td>
+						<td height="1" width="20"></td>
+					</tr>
+					
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$QueueItems</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					
+					<tr><td colspan="3" height="40">&nbsp;</td></tr>
+					
+					<!---/NumQueueItems--->
+					
+					<!---Data--->
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td>
+							<table class="subtable desktop" width="500" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:32px;line-height:20px;background-color:#5CBEAB;color:#ffffff;font-weight:bold;">#successItems</td>
+									<td width="40">&nbsp;</td>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:32px;line-height:20px;background-color:#E6C447;color:#ffffff;font-weight:bold;">#breItems</td>
+									<td width="40">&nbsp;</td>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:32px;line-height:20px;background-color:#F27A67;color:#ffffff;font-weight:bold;">#aeItems</td>
+									<td width="40">&nbsp;</td>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:32px;line-height:20px;background-color:#F6F8FC;font-weight:bold;">#rdItems</td>
+								</tr>
+								
+								<tr><td colspan="7" height="10" style="line-height:10px;">&nbsp;</td></tr>
+								
+								<tr>
+									<td width="95" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:center;">$Successful</td>
+									<td width="40">&nbsp;</td>
+									<td width="95" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:center;">$BRE</td>
+									<td width="40">&nbsp;</td>
+									<td width="95" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:center;">$AE</td>
+									<td width="40">&nbsp;</td>
+									<td width="95" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:center;">$Retried</td>
+								</tr>
+							</table>
+							<table class="subtable mobile" style="display:none;" width="500" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:26px;line-height:20px;background-color:#5CBEAB;color:#ffffff;font-weight:bold;">#successItems</td>
+									<td width="20">&nbsp;</td>
+									<td width="385" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:left;">$Successful</td>									
+								</tr>
+								<tr><td colspan="3" height="10" style="line-height:10px;">&nbsp;</td></tr>
+								<tr>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:26px;line-height:20px;background-color:#E6C447;color:#ffffff;font-weight:bold;">#breItems</td>
+									<td width="20">&nbsp;</td>
+									<td width="385" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:left;">$BRE</td>
+								</tr>
+								<tr><td colspan="3" height="10" style="line-height:10px;">&nbsp;</td></tr>
+								<tr>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:26px;line-height:20px;background-color:#F27A67;color:#ffffff;font-weight:bold;">#aeItems</td>
+									<td width="20">&nbsp;</td>
+									<td width="385" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:left;">$AE</td>
+								</tr>
+								<tr><td colspan="3" height="10" style="line-height:10px;">&nbsp;</td></tr>
+								<tr>
+									<td height="95" width="95" style="max-width:95px;border-radius:95px;text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:26px;line-height:20px;background-color:#F6F8FC;font-weight:bold;">#rdItems</td>
+									<td width="20">&nbsp;</td>
+									<td width="385" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;text-align:left;">$Retried</td>
+								</tr>
+								
+								
+								
+								
+							</table>
+						</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="40">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;text-align:center;font-weight:bold;color:#0F186B;">#newItemsNotification</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$Attachment</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<!---/Data--->
+					
+					<!---NoData--->
+					
+										<tr height="1">
+						<td height="1" width="20"></td>
+						<td height="1" style="height:1px;background-color:#F2F3F8;line-height:1px;"><div height="1" style="height:1px;line-height:1px;"></div></td>
+						<td height="1" width="20"></td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$NoData</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="40">&nbsp;</td></tr>
+					
+					<!---/NoData--->
+					
+					<!---Faulted--->
+					
+					<tr height="1">
+						<td height="1" width="20"></td>
+						<td height="1" style="height:1px;background-color:#F2F3F8;line-height:1px;"><div height="1" style="height:1px;line-height:1px;"></div></td>
+						<td height="1" width="20"></td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$Faulted</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="40">&nbsp;</td></tr>
+					
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;"><b style="font-weight:bold;">$ErrorMessage</b> #error</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					<!---/Faulted--->
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">$Closing</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td width="20">&nbsp;</td>
+						<td style="font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:20px;">#EmailSenderName</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+					
+					<tr><td colspan="3" height="20">&nbsp;</td></tr>
+					
+					
+				</table>
+				
+			</td>
+			
+				<td width="20">&nbsp;</td>
+			</tr>
+			<tr><td colspan="3" height="20">&nbsp;</td></tr>
+			<tr><td colspan="3" style="text-align:center;color:#999999;font-family:Arial, Helvetica, sans-serif; font-size:12px;">$GeneratedBy</td></tr>
+			<tr><td colspan="3" height="20">&nbsp;</td></tr>
+			<tr><td colspan="3" style="text-align:center;color:#999999;font-family:Arial, Helvetica, sans-serif; font-size:12px;">Powered by Ciphix.</td></tr>
+			<tr><td colspan="3" height="20">&nbsp;</td></tr>
+		</table>
+	</body>
+</html>
+</html>

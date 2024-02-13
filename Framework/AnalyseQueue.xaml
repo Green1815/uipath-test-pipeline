@@ -1,0 +1,389 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CheckForQueueItems" this:CheckForQueueItems.in_strInitiationSource="Robot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strOrchestratorQueueName" Type="InArgument(x:String)" />
+    <x:Property Name="out_dateTimeLastProcessedItem" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="out_dateCreationTimeFirstItem" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="in_strDispatcherName" Type="InArgument(x:String)" />
+    <x:Property Name="out_lastDispatcherJob" Type="OutArgument(ui:OrchestratorJob)" />
+    <x:Property Name="out_dateCreationTimeLastItem" Type="OutArgument(s:DateTime)" />
+    <x:Property Name="out_intNumOfItems" Type="OutArgument(x:Int32)" />
+    <x:Property Name="in_strNumberOfItemsMessage" Type="InArgument(x:String)" />
+    <x:Property Name="in_strDispatcherJobMessage" Type="InArgument(x:String)" />
+    <x:Property Name="in_strDispatcherJobUnknown" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTenantName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strInitiationSource" Type="InArgument(x:String)" />
+    <x:Property Name="in_strOrchestratorFolderName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strOrchestratorQueueNumber" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>879,4605</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>CheckForQueueItems_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="74">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Management.Automation</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="92">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Management.Automation</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Description: This workflow first checks the status of the latest Dispatcher status for Successful or Faulted. It then checks the assigned Orchestrator Queue whether it posssesses any QueueItems with the status New. If there are any, it retreives the creation time of the 'oldest' Newly added QueueItems and passes that on to the DirectReporter inside the End State of the Framework. If there are no New QueueItems, the process will end before opening any applications and the time of the last processed item (failed or successful) will be passed on to the Direct Reporter to indicate the timespan since the last handled item." DisplayName="Analyse Queue" sap:VirtualizedContainerService.HintSize="728,4540" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:IEnumerable(ui:OrchestratorJob)" Name="Jobs" />
+      <Variable x:TypeArguments="x:String" Name="strJSONResponseNew" />
+      <Variable x:TypeArguments="x:Int32" Name="intStatusCode" />
+      <Variable x:TypeArguments="njl:JObject" Name="objPayloadNew" />
+      <Variable x:TypeArguments="x:String" Name="strJSONResponseAll" />
+      <Variable x:TypeArguments="njl:JObject" Name="objPayloadAll" />
+      <Variable x:TypeArguments="x:String" Name="strJSONQueue" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If Condition="[in_strInitiationSource &lt;&gt; &quot;Studio&quot;]" DisplayName="If - InitiationSource is Robot? Get Job Data ; Skip if in Studio" sap:VirtualizedContainerService.HintSize="666,1424" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <TryCatch DisplayName="Try Catch - Get Job Data (does not work in Studio mode)" sap:VirtualizedContainerService.HintSize="632,1150" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch.Try>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="594,922" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetJobs Skip="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get job environment" Filter="State eq 'Running'&amp;$orderby=CreationTime%20desc" FolderPath="[in_strOrchestratorFolderName]" sap:VirtualizedContainerService.HintSize="532,141" sap2010:WorkflowViewState.IdRef="GetJobs_2" Result="[Jobs]" Top="1" />
+              <ui:GetJobs Skip="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get latest Dispatch job" Filter="[&quot;Release/Name eq '&quot;+in_strDispatcherName+&quot;_&quot;+Jobs.First.EnvironmentName+&quot;'&amp;$orderby=StartTime%20desc&quot;]" FolderPath="[in_strOrchestratorFolderName]" sap:VirtualizedContainerService.HintSize="532,141" sap2010:WorkflowViewState.IdRef="GetJobs_1" Result="[Jobs]" Top="1" />
+              <ui:ForEach x:TypeArguments="ui:OrchestratorJob" CurrentIndex="{x:Null}" DisplayName="For the latest dispatcher job" sap:VirtualizedContainerService.HintSize="532,449" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[Jobs]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="ui:OrchestratorJob">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="ui:OrchestratorJob" Name="job" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Retrieve latest dispatcher Job" sap:VirtualizedContainerService.HintSize="496,325" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign - Dispatcher status" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="ui:OrchestratorJob">[out_lastDispatcherJob]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="ui:OrchestratorJob">[job]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:LogMessage DisplayName="Log Message - Dispatcher Job Message" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(in_strDispatcherJobMessage,job.EndTime.ToString,job.State.ToString)]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+            </Sequence>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="598,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Assign status to Nothing" sap:VirtualizedContainerService.HintSize="496,325" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - Dispatcher Job Unknown" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[in_strDispatcherJobUnknown]" />
+                  <Assign DisplayName="Assign out_strDispatcherStatus Nothing" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="ui:OrchestratorJob">[out_lastDispatcherJob]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="ui:OrchestratorJob">[Nothing]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+      </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Log Message - Skip Retrieval Jobs" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Skipping retrieval of Job data, because the process is initiated from Studio.&quot;]" />
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Look-up new QueueItems" sap:VirtualizedContainerService.HintSize="666,844" sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[out_intNumOfItems &lt; Cint(objPayloadNew(&quot;@odata.count&quot;))]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="529,733" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+        <ui:InterruptibleDoWhile.Body>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="493,567" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:OrchestratorHttpRequest ResponseHeaders="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Orchestrator HTTP Request - New QueueItems" FolderPath="[in_strOrchestratorFolderName]" sap:VirtualizedContainerService.HintSize="431,242" sap2010:WorkflowViewState.IdRef="OrchestratorHttpRequest_2" JSONPayload="[&quot;{X-UIPATH-TenantName: '&quot;+in_strTenantName+&quot;' }&quot;]" Method="GET" RelativeEndpoint="[String.Format(&quot;/odata/QueueItems?$filter=(QueueDefinitionId eq {0} and Status eq 'New'and (DeferDate le {1} Or DeferDate eq null))&quot;, in_strOrchestratorQueueNumber, DateTime.Now.ToUniversalTime.ToString(&quot;yyyy-MM-ddTHH:mm:ssZ&quot;))]" Result="[strJSONResponseNew]" StatusCode="[intStatusCode]" />
+            <ui:MultipleAssign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Multiple Assign - New Queue Items" sap:VirtualizedContainerService.HintSize="431,174" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="njl:JObject">[objPayloadNew]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(strJSONResponseNew)]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[out_intNumOfItems]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[objPayloadNew("value").Count + out_intNumOfItems]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MultipleAssign>
+          </Sequence>
+        </ui:InterruptibleDoWhile.Body>
+      </ui:InterruptibleDoWhile>
+    </Sequence>
+    <If Condition="[out_intNumOfItems &gt; 0]" DisplayName="If - New Queue Items exist? Check Dates : -" sap:VirtualizedContainerService.HintSize="666,800" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="473,618" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="out_dateCreationTimeFirstItem = Creation Time of First Item&#xA;out_dateCreationTimeFirstItem = Convert to correct Timezone&#xA;out_dateCreationTimeLastItem = Creation Time of Last Item&#xA;out_dateCreationTimeLastItem = Convert to correct Timezone" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,266" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateCreationTimeFirstItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[Convert.ToDateTime(objPayloadNew("value").First("CreationTime").ToString)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateCreationTimeFirstItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[System.TimeZoneInfo.ConvertTimeFromUtc(out_dateCreationTimeFirstItem, System.TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time"))]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateCreationTimeLastItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[Convert.ToDateTime(objPayloadNew("value").Last("CreationTime").ToString)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateCreationTimeLastItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[System.TimeZoneInfo.ConvertTimeFromUtc(out_dateCreationTimeLastItem, System.TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time"))]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+          <ui:LogMessage DisplayName="Log Message - Creation Time First Item" sap:VirtualizedContainerService.HintSize="431,92" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Creation Time First Item: &quot;,out_dateCreationTimeFirstItem.ToString)]" />
+          <ui:LogMessage DisplayName="Log Message - Creation Time Last Item" sap:VirtualizedContainerService.HintSize="431,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[String.Format(&quot;Creation Time Last Item: &quot;,out_dateCreationTimeLastItem.ToString)]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_11" />
+      </If.Else>
+    </If>
+    <ui:OrchestratorHttpRequest ResponseHeaders="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Orchestrator HTTP Request - New QueueItems" FolderPath="[in_strOrchestratorFolderName]" sap:VirtualizedContainerService.HintSize="666,242" sap2010:WorkflowViewState.IdRef="OrchestratorHttpRequest_3" JSONPayload="[&quot;{X-UIPATH-TenantName: '&quot;+in_strTenantName+&quot;' }&quot;]" Method="GET" RelativeEndpoint="[string.Format(&quot;/odata/QueueItems?$filter=(QueueDefinitionId eq {0} and (Status eq 'Successful' or Status eq 'Failed'))&amp;$oderby=StartProcessing des&quot;,in_strOrchestratorQueueNumber)]" Result="[strJSONResponseALL]" StatusCode="[intStatusCode]" />
+    <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON All Items" sap:VirtualizedContainerService.HintSize="666,124" sap2010:WorkflowViewState.IdRef="Assign_22">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JObject">[objPayloadAll]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(strJSONResponseALL)]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <If Condition="[objPayloadAll(&quot;value&quot;).Count &gt; 0]" DisplayName="If - Processed Queue Items exist? Check Dates : -" sap:VirtualizedContainerService.HintSize="666,576" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="473,394" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="out_dateTimeLastProcessedItem = End Process Time of Last Item&#xA;out_dateTimeLastProcessedItem = Convert to correct Timezone" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,174" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateTimeLastProcessedItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[Convert.ToDateTime(objPayloadAll("value").Last("EndProcessing").ToString)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:DateTime">[out_dateTimeLastProcessedItem]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:DateTime">[System.TimeZoneInfo.ConvertTimeFromUtc(out_dateTimeLastProcessedItem, System.TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time"))]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+          <ui:LogMessage DisplayName="Log Message - End Process Time Last Item" sap:VirtualizedContainerService.HintSize="431,92" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[String.Format(&quot;End Process Time Last Item: &quot;,out_dateTimeLastProcessedItem.ToString)]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_12" />
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log Message - intNumOfItems" sap:VirtualizedContainerService.HintSize="666,92" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;{0} {1}&quot;,out_intNumOfItems.ToString,in_strNumberOfItemsMessage)]" />
+  </Sequence>
+</Activity>

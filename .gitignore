@@ -1,0 +1,63 @@
+#Ignore all .png, .jpeg, .jpg files
+*.jpeg
+*.jpg
+
+#Ignore all .xlsx, csv and xls files excluding Config.xlsx
+*.xlsx
+*.csv
+*.xls
+!Config.xlsx
+!InputData.xlsx
+!Report_Template.xlsx
+
+#Ignore all .pdf, .docx, .doc files
+*.doc
+*.docx
+*.pdf
+
+#Ignore standard local UiPath Folders
+.local/
+.tmh/
+.screenshots/
+Exceptions_Screenshots/
+.objects/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+Log.txt
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini

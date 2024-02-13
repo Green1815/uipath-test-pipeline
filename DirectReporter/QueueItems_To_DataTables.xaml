@@ -1,0 +1,1142 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="JSONQueueItems_To_DataTables_" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_QueueItem" Type="InArgument(njl:JObject)" />
+    <x:Property Name="io_dtSuccessItems" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_dtRetriedItems" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_dtFailedItems" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_dtBusinessRuleItems" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_dtNewItems" Type="InOutArgument(sd:DataTable)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>2042,1179</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>JSONQueueItems_To_DataTables__1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:Annotation.AnnotationText="Description: In this invoked (inner-forEach) workflow, the QueueItem is categorized based on type Successful, BusinessException, Retried or Failed. For every category a Data Table is created. " DisplayName="QueueItems_To_DataTables" sap:VirtualizedContainerService.HintSize="863,841" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="njl:JObject" Name="jsonProgress" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">360,22.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">390,97.5 390,127.5</av:PointCollection>
+        <x:Double x:Key="Width">829</x:Double>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Double x:Key="Height">753</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID8</x:Reference>
+    </Flowchart.StartNode>
+    <FlowDecision x:Name="__ReferenceID6" Condition="[in_QueueItem(&quot;Status&quot;).ToString.Contains(&quot;Successful&quot;)]" DisplayName="Successful?" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <av:Point x:Key="ShapeLocation">425,216.5</av:Point>
+          <av:Size x:Key="ShapeSize">70,87</av:Size>
+          <av:PointCollection x:Key="TrueConnector">425,260 280,260 280,346</av:PointCollection>
+          <av:PointCollection x:Key="FalseConnector">495,260 530,260 530,306.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <FlowDecision.True>
+        <FlowStep x:Name="__ReferenceID2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">180,346</av:Point>
+              <av:Size x:Key="ShapeSize">200,147</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="SpecificContent and Output and Progress are added to the Data Table." DisplayName="Arrange dtSuccessItems" sap:VirtualizedContainerService.HintSize="200,147" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:AddDataRow ArrayRow="{x:Null}" DataRow="[io_dtSuccessItems.NewRow]" DataTable="[io_dtSuccessItems]" DisplayName="Add Data Row - Init Row" sap:VirtualizedContainerService.HintSize="758,195" sap2010:WorkflowViewState.IdRef="AddDataRow_16" />
+            <Sequence DisplayName="Add columns and data" sap:VirtualizedContainerService.HintSize="758,3447" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Specific Content" sap:VirtualizedContainerService.HintSize="696,824" sap2010:WorkflowViewState.IdRef="ForEach`1_11" Values="[in_QueueItem(&quot;SpecificContent&quot;)]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="njl:JProperty">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[Not io_dtSuccessItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If.Then>
+                          <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtSuccessItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_14" Unique="False" />
+                        </If.Then>
+                      </If>
+                      <Assign DisplayName="Assign - dtSuccess" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_5">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Object">[io_dtSuccessItems.Rows(io_dtSuccessItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+              <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Output" sap:VirtualizedContainerService.HintSize="696,824" sap2010:WorkflowViewState.IdRef="ForEach`1_12" Values="[in_QueueItem(&quot;Output&quot;)]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="njl:JProperty">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[Not io_dtSuccessItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_8">
+                        <If.Then>
+                          <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtSuccessItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_15" Unique="False" />
+                        </If.Then>
+                      </If>
+                      <Assign DisplayName="Assign - dtSuccess" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Object">[io_dtSuccessItems.Rows(io_dtSuccessItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+              <TryCatch DisplayName="Try Catch - Add Progress in Separate Columns : Add Progress in One Column" sap:VirtualizedContainerService.HintSize="696,1597" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <TryCatch.Try>
+                  <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;Progress&quot;).ToString)]" DisplayName="If - Progress Success" sap:VirtualizedContainerService.HintSize="658,1360" sap2010:WorkflowViewState.IdRef="If_36">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="576,1097" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON Progress Reporter" sap:VirtualizedContainerService.HintSize="514,112" sap2010:WorkflowViewState.IdRef="Assign_39">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="njl:JObject">[jsonProgress]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(in_QueueItem("Progress").ToString)]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Progress Success" sap:VirtualizedContainerService.HintSize="514,823" sap2010:WorkflowViewState.IdRef="ForEach`1_21" Values="[jsonProgress]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="njl:JProperty">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[Not io_dtSuccessItems.Columns.Contains(item.Name.ToString+&quot;_progress&quot;)]" DisplayName="If - Progress Column Present Success" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_35">
+                                  <If.Then>
+                                    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString+&quot;_progress&quot;]" DataTable="[io_dtSuccessItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_34" Unique="False" />
+                                  </If.Then>
+                                </If>
+                                <Assign DisplayName="Assign - Progress Success" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[io_dtSuccessItems.Rows(io_dtSuccessItems.Rows.Count-1)(item.Name.ToString+"_progress")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="662,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="546,670" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[Not io_dtSuccessItems.Columns.Contains(&quot;Progress&quot;)]" DisplayName="If - Progress Does Not Exist Yet" sap:VirtualizedContainerService.HintSize="484,448" sap2010:WorkflowViewState.IdRef="If_58">
+                          <If.Then>
+                            <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Progress" DataTable="[io_dtSuccessItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_48" Unique="False" />
+                          </If.Then>
+                        </If>
+                        <Assign DisplayName="Assign - dtSuccess" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_dtSuccessItems.Rows(io_dtSuccessItems.Rows.Count-1)("Progress")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[in_QueueItem("Progress").ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
+          </Sequence>
+        </FlowStep>
+      </FlowDecision.True>
+      <FlowDecision.False>
+        <FlowDecision x:Name="__ReferenceID1" Condition="[in_QueueItem(&quot;ProcessingExceptionType&quot;).ToString = &quot;BusinessException&quot;]" DisplayName="Business?" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <av:Point x:Key="ShapeLocation">495,306.5</av:Point>
+              <av:Size x:Key="ShapeSize">70,87</av:Size>
+              <av:PointCollection x:Key="TrueConnector">495,350 390,350 390,476</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">565,350 600,350 600,396.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <FlowDecision.True>
+            <FlowStep x:Name="__ReferenceID3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">290,476</av:Point>
+                  <av:Size x:Key="ShapeSize">200,147</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence sap2010:Annotation.AnnotationText="SpecificContent, ProcessingException and Progress" DisplayName="Arrange dtBusinessItems" sap:VirtualizedContainerService.HintSize="200,147" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:AddDataRow ArrayRow="{x:Null}" DataRow="[io_dtBusinessRuleItems.NewRow]" DataTable="[io_dtBusinessRuleItems]" DisplayName="Add Data Row - Init Row" sap:VirtualizedContainerService.HintSize="500,195" sap2010:WorkflowViewState.IdRef="AddDataRow_12" />
+                <Sequence DisplayName="Add columns and data" sap:VirtualizedContainerService.HintSize="500,927" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Specific Content" sap:VirtualizedContainerService.HintSize="438,224" sap2010:WorkflowViewState.IdRef="ForEach`1_13" Values="[in_QueueItem(&quot;SpecificContent&quot;)]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="njl:JProperty">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[Not io_dtBusinessRuleItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_9">
+                            <If.Then>
+                              <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtBusinessRuleItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_16" Unique="False" />
+                            </If.Then>
+                          </If>
+                          <Assign DisplayName="Assign - dtBRE" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[io_dtBusinessRuleItems.Rows(io_dtBusinessRuleItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                  <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - ProcessingException" sap:VirtualizedContainerService.HintSize="438,214" sap2010:WorkflowViewState.IdRef="ForEach`1_14" Values="[in_QueueItem(&quot;ProcessingException&quot;)]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="njl:JProperty">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,80" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[Not io_dtBusinessRuleItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_10">
+                            <If.Then>
+                              <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtBusinessRuleItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_17" Unique="False" />
+                            </If.Then>
+                          </If>
+                          <Assign DisplayName="Assign - dtBRE" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[io_dtBusinessRuleItems.Rows(io_dtBusinessRuleItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                  <TryCatch DisplayName="Try Catch - Add Progress in Separate Columns : Add Progress in One Column" sap:VirtualizedContainerService.HintSize="438,287" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                    <TryCatch.Try>
+                      <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;Progress&quot;).ToString)]" DisplayName="If - Progress BRE" sap:VirtualizedContainerService.HintSize="640,1109" sap2010:WorkflowViewState.IdRef="If_38">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="604,922" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON Progress Reporter" sap:VirtualizedContainerService.HintSize="562,102" sap2010:WorkflowViewState.IdRef="Assign_41">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="njl:JObject">[jsonProgress]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(in_QueueItem("Progress").ToString)]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Progress BRE" sap:VirtualizedContainerService.HintSize="562,688" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[jsonProgress]">
+                              <ui:ForEach.Body>
+                                <ActivityAction x:TypeArguments="njl:JProperty">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,564" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If Condition="[Not io_dtBusinessRuleItems.Columns.Contains(item.Name.ToString+&quot;_progress&quot;)]" DisplayName="If - Progress Column Present BRE" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_37">
+                                      <If.Then>
+                                        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString+&quot;_progress&quot;]" DataTable="[io_dtBusinessRuleItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_35" Unique="False" />
+                                      </If.Then>
+                                    </If>
+                                    <Assign DisplayName="Assign - Progress BRE" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Object">[io_dtBusinessRuleItems.Rows(io_dtBusinessRuleItems.Rows.Count-1)(item.Name.ToString+"_progress")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:ForEach.Body>
+                            </ui:ForEach>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,564" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[Not io_dtBusinessRuleItems.Columns.Contains(&quot;Progress&quot;)]" DisplayName="If -  Progress Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_56">
+                              <If.Then>
+                                <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Progress" DataTable="[io_dtBusinessRuleItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_46" Unique="False" />
+                              </If.Then>
+                            </If>
+                            <Assign DisplayName="Assign - dtBRE" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Object">[io_dtBusinessRuleItems.Rows(io_dtBusinessRuleItems.Rows.Count-1)("Progress")]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Object">[in_QueueItem("Progress").ToString]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                </Sequence>
+              </Sequence>
+            </FlowStep>
+          </FlowDecision.True>
+          <FlowDecision.False>
+            <FlowDecision x:Name="__ReferenceID0" Condition="[in_QueueItem(&quot;Status&quot;).ToString = &quot;Retried&quot;]" DisplayName="Retried?" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <av:Point x:Key="ShapeLocation">565,396.5</av:Point>
+                  <av:Size x:Key="ShapeSize">70,87</av:Size>
+                  <av:PointCollection x:Key="FalseConnector">635,440 710,440 710,606</av:PointCollection>
+                  <av:PointCollection x:Key="TrueConnector">565,440 500,440 500,606</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <FlowDecision.True>
+                <FlowStep x:Name="__ReferenceID5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">400,606</av:Point>
+                      <av:Size x:Key="ShapeSize">200,147</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap2010:Annotation.AnnotationText="SpecificContent and ProcessingException and Progress" DisplayName="Arrange dtRetriedItems" sap:VirtualizedContainerService.HintSize="562,1315" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataRow ArrayRow="{x:Null}" DataRow="[io_dtRetriedItems.NewRow]" DataTable="[io_dtRetriedItems]" DisplayName="Add Data Row - Init Row" sap:VirtualizedContainerService.HintSize="500,195" sap2010:WorkflowViewState.IdRef="AddDataRow_13" />
+                    <Sequence DisplayName="Add columns and data" sap:VirtualizedContainerService.HintSize="500,927" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Specific Content" sap:VirtualizedContainerService.HintSize="438,224" sap2010:WorkflowViewState.IdRef="ForEach`1_15" Values="[in_QueueItem(&quot;SpecificContent&quot;)]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JProperty">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[Not io_dtRetriedItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_11">
+                                <If.Then>
+                                  <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtRetriedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_18" Unique="False" />
+                                </If.Then>
+                              </If>
+                              <Assign DisplayName="Assign - dtRetried" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_dtRetriedItems.Rows(io_dtRetriedItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - ProcessingException" sap:VirtualizedContainerService.HintSize="438,214" sap2010:WorkflowViewState.IdRef="ForEach`1_16" Values="[in_QueueItem(&quot;ProcessingException&quot;)]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JProperty">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,80" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[Not io_dtRetriedItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_12">
+                                <If.Then>
+                                  <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtRetriedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_19" Unique="False" />
+                                </If.Then>
+                              </If>
+                              <Assign DisplayName="Assign - dtRetried" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_dtRetriedItems.Rows(io_dtRetriedItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <TryCatch DisplayName="Try Catch - Add Progress in Separate Columns : Add Progress in One Column" sap:VirtualizedContainerService.HintSize="438,287" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                        <TryCatch.Try>
+                          <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;Progress&quot;).ToString)]" DisplayName="If - Progress in Retried" sap:VirtualizedContainerService.HintSize="640,1109" sap2010:WorkflowViewState.IdRef="If_40">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="604,922" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON Progress Reporter" sap:VirtualizedContainerService.HintSize="562,102" sap2010:WorkflowViewState.IdRef="Assign_42">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="njl:JObject">[jsonProgress]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(in_QueueItem("Progress").ToString)]</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                                <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Progress Retried" sap:VirtualizedContainerService.HintSize="562,688" sap2010:WorkflowViewState.IdRef="ForEach`1_23" Values="[jsonProgress]">
+                                  <ui:ForEach.Body>
+                                    <ActivityAction x:TypeArguments="njl:JProperty">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,564" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If Condition="[Not io_dtRetriedItems.Columns.Contains(item.Name.ToString+&quot;_progress&quot;)]" DisplayName="If - Progress Column Present Retried" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_39">
+                                          <If.Then>
+                                            <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString+&quot;_progress&quot;]" DataTable="[io_dtRetriedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_36" Unique="False" />
+                                          </If.Then>
+                                        </If>
+                                        <Assign DisplayName="Assign - Retried Progress" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Object">[io_dtRetriedItems.Rows(io_dtRetriedItems.Rows.Count-1)(item.Name.ToString+"_progress")]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:ForEach.Body>
+                                </ui:ForEach>
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ActivityAction x:TypeArguments="s:Exception">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,564" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[Not io_dtRetriedItems.Columns.Contains(&quot;Progress&quot;)]" DisplayName="If - Progress Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_55">
+                                  <If.Then>
+                                    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Progress" DataTable="[io_dtRetriedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_45" Unique="False" />
+                                  </If.Then>
+                                </If>
+                                <Assign DisplayName="Assign - dtRetried" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[io_dtRetriedItems.Rows(io_dtRetriedItems.Rows.Count-1)("Progress")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">[in_QueueItem("Progress").ToString]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                      </TryCatch>
+                    </Sequence>
+                  </Sequence>
+                </FlowStep>
+              </FlowDecision.True>
+              <FlowDecision.False>
+                <FlowStep x:Name="__ReferenceID4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">610,606</av:Point>
+                      <av:Size x:Key="ShapeSize">200,147</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap2010:Annotation.AnnotationText="SpecificContent and ProcessingException and Progress" DisplayName="Arrange dtFailedItems" sap:VirtualizedContainerService.HintSize="200,147" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataRow ArrayRow="{x:Null}" DataRow="[io_dtFailedItems.NewRow]" DataTable="[io_dtFailedItems]" DisplayName="Add Data Row - Init Row" sap:VirtualizedContainerService.HintSize="696,195" sap2010:WorkflowViewState.IdRef="AddDataRow_17" />
+                    <Sequence DisplayName="Add columns and data" sap:VirtualizedContainerService.HintSize="696,1810" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Specific Content" sap:VirtualizedContainerService.HintSize="514,824" sap2010:WorkflowViewState.IdRef="ForEach`1_17" Values="[in_QueueItem(&quot;SpecificContent&quot;)]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JProperty">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[Not io_dtFailedItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_14">
+                                <If.Then>
+                                  <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtFailedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_21" Unique="False" />
+                                </If.Then>
+                              </If>
+                              <Assign DisplayName="Assign - dtFailed" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_dtFailedItems.Rows(io_dtFailedItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - ProcessingException" sap:VirtualizedContainerService.HintSize="514,824" sap2010:WorkflowViewState.IdRef="ForEach`1_18" Values="[in_QueueItem(&quot;ProcessingException&quot;)]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JProperty">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[Not io_dtFailedItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_15">
+                                <If.Then>
+                                  <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtFailedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_22" Unique="False" />
+                                </If.Then>
+                              </If>
+                              <Assign DisplayName="Assign - dtFailed" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_dtFailedItems.Rows(io_dtFailedItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                    </Sequence>
+                    <If Condition="[Not in_QueueItem(&quot;Status&quot;).ToString.Equals(&quot;Failed&quot;)]" DisplayName="If - Status is NOT Failed" sap:VirtualizedContainerService.HintSize="696,363" sap2010:WorkflowViewState.IdRef="If_18">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[Not io_dtFailedItems.Columns.Contains(&quot;Type&quot;)]" DisplayName="If - Type Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_17">
+                            <If.Then>
+                              <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Type" DataTable="[io_dtFailedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_24" Unique="False" />
+                            </If.Then>
+                          </If>
+                          <Assign DisplayName="Assign - dtFailed" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_14">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[io_dtFailedItems.Rows(io_dtFailedItems.Rows.Count-1)("Type")]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["TransactionStatus "+in_QueueItem("Status").ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                    <TryCatch DisplayName="Try Catch - Add Progress in Separate Columns : Add Progress in One Column" sap:VirtualizedContainerService.HintSize="696,1597" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                      <TryCatch.Try>
+                        <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;Progress&quot;).ToString)]" DisplayName="If - Progress in Failed" sap:VirtualizedContainerService.HintSize="658,1360" sap2010:WorkflowViewState.IdRef="If_42">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="576,1097" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON Progress Reporter" sap:VirtualizedContainerService.HintSize="514,112" sap2010:WorkflowViewState.IdRef="Assign_43">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="njl:JObject">[jsonProgress]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(in_QueueItem("Progress").ToString)]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                              <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Progress in Failed" sap:VirtualizedContainerService.HintSize="514,823" sap2010:WorkflowViewState.IdRef="ForEach`1_24" Values="[jsonProgress]">
+                                <ui:ForEach.Body>
+                                  <ActivityAction x:TypeArguments="njl:JProperty">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If Condition="[Not io_dtFailedItems.Columns.Contains(item.Name.ToString+&quot;_progress&quot;)]" DisplayName="If - Column Failed Progress is present" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_41">
+                                        <If.Then>
+                                          <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString+&quot;_progress&quot;]" DataTable="[io_dtFailedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_37" Unique="False" />
+                                        </If.Then>
+                                      </If>
+                                      <Assign DisplayName="Assign - dtFailedItems Progress" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Object">[io_dtFailedItems.Rows(io_dtFailedItems.Rows.Count-1)(item.Name.ToString+"_progress")]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEach.Body>
+                              </ui:ForEach>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </TryCatch.Try>
+                      <TryCatch.Catches>
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="644,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="s:Exception">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,564" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[Not io_dtFailedItems.Columns.Contains(&quot;Progress&quot;)]" DisplayName="If - Progress Does Not Exist" sap:VirtualizedContainerService.HintSize="484,372" sap2010:WorkflowViewState.IdRef="If_54">
+                                <If.Then>
+                                  <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Progress" DataTable="[io_dtFailedItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_44" Unique="False" />
+                                </If.Then>
+                              </If>
+                              <Assign DisplayName="Assign - dtFailed" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Object">[io_dtFailedItems.Rows(io_dtFailedItems.Rows.Count-1)("Progress")]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Object">[in_QueueItem("Progress").ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </Catch>
+                      </TryCatch.Catches>
+                    </TryCatch>
+                  </Sequence>
+                </FlowStep>
+              </FlowDecision.False>
+            </FlowDecision>
+          </FlowDecision.False>
+        </FlowDecision>
+      </FlowDecision.False>
+    </FlowDecision>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <FlowDecision x:Name="__ReferenceID8" Condition="[in_QueueItem(&quot;Status&quot;).ToString.Contains(&quot;New&quot;)]" DisplayName="New?" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <av:Point x:Key="ShapeLocation">355,127.5</av:Point>
+          <av:Size x:Key="ShapeSize">70,87</av:Size>
+          <av:PointCollection x:Key="TrueConnector">355,170.833333333333 140,170.833333333333 140,208.5</av:PointCollection>
+          <av:PointCollection x:Key="FalseConnector">425,171 460,171 460,216.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <FlowDecision.True>
+        <FlowStep x:Name="__ReferenceID7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">40,208.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,147</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="SpecificContent, DeferDate and Progress are added to the Data Table" DisplayName="Arrange dtNewtems" sap:VirtualizedContainerService.HintSize="200,147" sap2010:WorkflowViewState.IdRef="Sequence_36">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:AddDataRow ArrayRow="{x:Null}" DataRow="[io_dtNewItems.NewRow]" DataTable="[io_dtNewItems]" DisplayName="Add Data Row - Init Row" sap:VirtualizedContainerService.HintSize="718,195" sap2010:WorkflowViewState.IdRef="AddDataRow_15" />
+            <Sequence DisplayName="Add columns and data" sap:VirtualizedContainerService.HintSize="718,3480" sap2010:WorkflowViewState.IdRef="Sequence_35">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Specific Content" sap:VirtualizedContainerService.HintSize="656,824" sap2010:WorkflowViewState.IdRef="ForEach`1_19" Values="[in_QueueItem(&quot;SpecificContent&quot;)]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="njl:JProperty">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,690" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[Not io_dtNewItems.Columns.Contains(item.Name.ToString)]" DisplayName="If - Column Not Exists" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_19">
+                        <If.Then>
+                          <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString]" DataTable="[io_dtNewItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_25" Unique="False" />
+                        </If.Then>
+                      </If>
+                      <Assign DisplayName="Assign - dtNewItems" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_15">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Object">[io_dtNewItems.Rows(io_dtNewItems.Rows.Count-1)(item.Name.ToString)]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+              <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;DeferDate&quot;).ToString)]" DisplayName="If - DeferDate" sap:VirtualizedContainerService.HintSize="656,921" sap2010:WorkflowViewState.IdRef="If_24">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="458,658" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[Not io_dtNewItems.Columns.Contains(&quot;DeferDate&quot;)]" DisplayName="If - No DeferDate in dtNewItems" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_23">
+                      <If.Then>
+                        <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="DeferDate" DataTable="[io_dtNewItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_28" Unique="False" />
+                      </If.Then>
+                    </If>
+                    <Assign DisplayName="Assign - dtNewItems" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_18">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[io_dtNewItems.Rows(io_dtNewItems.Rows.Count-1)("DeferDate")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[in_QueueItem("DeferDate").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+              </If>
+              <TryCatch DisplayName="Try Catch - Add Progress in Separate Columns : Add Progress in One Column" sap:VirtualizedContainerService.HintSize="656,1533" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <TryCatch.Try>
+                  <If Condition="[Not String.IsNullOrEmpty(in_QueueItem(&quot;Progress&quot;).ToString)]" DisplayName="If - Progress" sap:VirtualizedContainerService.HintSize="618,1296" sap2010:WorkflowViewState.IdRef="If_34">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="536,1033" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap2010:Annotation.AnnotationText="Use assign instead of WebAPI Deserialize activity to prevent dependency conflicts" DisplayName="Assign - Deserialize JSON Progress Reporter" sap:VirtualizedContainerService.HintSize="494,112" sap2010:WorkflowViewState.IdRef="Assign_40">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="njl:JObject">[jsonProgress]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.JsonConvert.DeserializeObject(Of JObject)(in_QueueItem("Progress").ToString)]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each - Progress Item" sap:VirtualizedContainerService.HintSize="494,791" sap2010:WorkflowViewState.IdRef="ForEach`1_20" Values="[jsonProgress]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="njl:JProperty">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="njl:JProperty" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="458,658" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[Not io_dtNewItems.Columns.Contains(item.Name.ToString+&quot;_progress&quot;)]" DisplayName="If - Progress Columns Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_33">
+                                  <If.Then>
+                                    <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="[item.Name.ToString+&quot;_progress&quot;]" DataTable="[io_dtNewItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_33" Unique="False" />
+                                  </If.Then>
+                                </If>
+                                <Assign DisplayName="Assign - dtNewItems" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[io_dtNewItems.Rows(io_dtNewItems.Rows.Count-1)(item.Name.ToString+"_progress")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">[item.Value.ToString]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="622,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="458,658" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[Not io_dtNewItems.Columns.Contains(&quot;Progress&quot;)]" DisplayName="If - Progress Does Not Exist" sap:VirtualizedContainerService.HintSize="416,458" sap2010:WorkflowViewState.IdRef="If_53">
+                          <If.Then>
+                            <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="Progress" DataTable="[io_dtNewItems]" DisplayName="Add Data Column from QueueItems" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_43" Unique="False" />
+                          </If.Then>
+                        </If>
+                        <Assign DisplayName="Assign - dtNewItems" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="Assign_33">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_dtNewItems.Rows(io_dtNewItems.Rows.Count-1)("Progress")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[in_QueueItem("Progress").ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
+          </Sequence>
+        </FlowStep>
+      </FlowDecision.True>
+      <FlowDecision.False>
+        <x:Reference>__ReferenceID6</x:Reference>
+      </FlowDecision.False>
+    </FlowDecision>
+    <x:Reference>__ReferenceID7</x:Reference>
+  </Flowchart>
+</Activity>

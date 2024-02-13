@@ -1,0 +1,12 @@
+{
+  "mockedWorkflows": [
+    {
+      "mockFilePath": "Mocks\\Framework\\GetDataAndDispatch_mock.xaml",
+      "sourceWorkflowPath": "Framework\\GetDataAndDispatch.xaml"
+    },
+    {
+      "mockFilePath": "Mocks\\DirectReporter\\DirectReporter_mock.xaml",
+      "sourceWorkflowPath": "DirectReporter\\DirectReporter.xaml"
+    }
+  ]
+}

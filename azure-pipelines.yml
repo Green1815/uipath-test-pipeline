@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+variables:
+  folder: '<Your_Folder>'
+  connection: '<Your_Orchestrator_Connection>'
+
+trigger:
+- main
+- changelog
+
+pool:
+  vmImage: windows-latest
+
+steps:
+
+- task: UiPathInstallPlatform@3
+  inputs:
+    cliVersion: 'WIN_22.10.8438.32859'
+
+- task: UiPathPack@3
+  displayName: 'Packing as a NuGet package'
+  inputs:
+    versionType: 'CurrentVersion'
+    projectJsonPath: '$(Build.SourcesDirectory)'
+    orchestratorConnection: '$(connection)'
+    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+    traceLevel: 'Information'
+
+- task: UiPathDeploy@3
+  displayName: 'Deploying to Orchestrator $(folder) folder'
+  inputs:
+    orchestratorConnection: '$(connection)'
+    packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
+    folderName: '$(folder)'
+    traceLevel: 'Information'
